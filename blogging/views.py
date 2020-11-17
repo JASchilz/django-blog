@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
+
 def stub_view(request, *args, **kwargs):
     body = "Stub View\n\n"
     if args:
@@ -15,6 +16,7 @@ def stub_view(request, *args, **kwargs):
         body += "Kwargs:\n"
         body += "\n".join(["\t%s: %s" % i for i in kwargs.items()])
     return HttpResponse(body, content_type="text/plain")
+
 
 # def list_view(request):
 #     published = Post.objects.exclude(published_date__exact=None)
@@ -29,11 +31,15 @@ def stub_view(request, *args, **kwargs):
 #     context = {'posts': posts}
 #     return render(request, 'blogging/list.html', context)
 
+
 class PostListView(ListView):
     # published = Post.objects.exclude(published_date__exact=None)
     # posts = published.order_by('-published_date')
-    queryset = Post.objects.exclude(published_date__exact=None).order_by('-published_date')
-    template_name = 'blogging/list.html'
+    queryset = Post.objects.exclude(published_date__exact=None).order_by(
+        "-published_date"
+    )
+    template_name = "blogging/list.html"
+
 
 # def detail_view(request, post_id):
 #     published = Post.objects.exclude(published_date__exact=None)
@@ -44,10 +50,12 @@ class PostListView(ListView):
 #     context = {'post': post}
 #     return render(request, 'blogging/detail.html', context)
 
+
 class PostDetailView(DetailView):
     queryset = Post.objects.exclude(published_date__exact=None).order_by(
-        '-published_date')
-    template_name = 'blogging/list.html'
+        "-published_date"
+    )
+    template_name = "blogging/list.html"
     #
     # def display(self, request, post_id):
     #     try:
