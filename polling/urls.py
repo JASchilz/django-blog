@@ -1,4 +1,5 @@
 from django.urls import path
+
 # from polling.views import list_view, detail_view
 from polling.views import PollListView, PollDetailView
 
