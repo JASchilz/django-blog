@@ -52,15 +52,6 @@ class PostListView(ListView):
 
 
 class PostDetailView(DetailView):
-    queryset = Post.objects.exclude(published_date__exact=None).order_by(
-        "-published_date"
-    )
-    template_name = "blogging/list.html"
-    #
-    # def display(self, request, post_id):
-    #     try:
-    #         post = self.queryset.get(pk=post_id)
-    #     except Post.DoesNotExist:
-    #         raise Http404
-    #     context = {'post': post}
-    #     return render(request, 'blogging/detail.html', context)
+    queryset = Post.objects.exclude(published_date__exact=None)
+    template_name = "blogging/detail.html"
+
